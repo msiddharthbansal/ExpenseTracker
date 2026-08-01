@@ -133,14 +133,14 @@ Expenses are stored as a JSON array in `data/expenses.json`, created automatical
 
 ```
 src/
-  config.py          # data file path
+  config.py          
   models.py           # Pydantic models: Category enum, ExpenseCreate, Expense, ExpenseSummary, ExpenseFilter
   storage.py           # thread-safe JSON file read/write (lock + atomic write)
   repository.py         # CRUD + multi-criteria search over expenses
-  services.py            # pure business logic: category-wise/total summary computation
+  services.py            
   routes/expenses.py       # POST /expenses, GET /expenses (search/filter), GET /expenses/summary, DELETE /expenses/{id}
   routes/categories.py    # GET /categories route handler
-  main.py                # FastAPI app instance
+  main.py                
 tests/
   test_repository.py    # unit tests, no HTTP layer
   test_services.py        # unit tests for summary computation, no HTTP or storage
