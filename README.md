@@ -127,7 +127,7 @@ Returns `204 No Content` on success. Returns `404` if the id doesn't exist (incl
 
 ## Data storage
 
-Expenses are stored as a JSON array in `data/expenses.json`, created automatically on first write. This file is git-ignored since it's runtime data, not source.
+Expenses are stored as a JSON array in `data/expenses.json`, checked into the repo starting as `[]`. All reads/writes go through `src/storage.py` (thread-safe, atomic write); the path itself is defined once in `src/config.py`.
 
 ## Project structure
 
@@ -145,4 +145,7 @@ tests/
   test_repository.py    # unit tests, no HTTP layer
   test_services.py        # unit tests for summary computation, no HTTP or storage
   test_routes.py          # integration tests via FastAPI TestClient
+  conftest.py              # isolates storage.DATA_FILE to a temp file per test
+data/
+  expenses.json           # checked in starting as [], updated in place as expenses are added/deleted
 ```
